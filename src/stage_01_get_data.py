@@ -3,7 +3,7 @@ import os
 import shutil
 from tqdm import tqdm
 import logging
-from src.utils.common import read_yaml, create_directories
+from src.utils.common import read_yaml, create_directories, unzip_file
 import random
 import urllib.request as req
 
@@ -29,12 +29,18 @@ def main(config_path):
     data_file = config["data"]["data_file"]
     data_file_path = os.path.join(local_dir, data_file)
     
-    logging.info("downloading started...")
+    
     if not os.path.isfile(data_file_path):
+        logging.info("downloading started...")
         filename, headers = req.urlretrieve(URL, data_file_path)
         logging.info(f"filename:{filename} created with info \n{headers}")
     else:
         logging.info(f"filename:{data_file} already present")
+    
+    #unzip ops
+    unzip_data_dir = config["data"]["unzip_data_dir"]
+    create_directories([unzip_data_dir])
+    unzip_file(source=data_file_path, dest= unzip_data_dir)
     
 
 if __name__ == '__main__':
