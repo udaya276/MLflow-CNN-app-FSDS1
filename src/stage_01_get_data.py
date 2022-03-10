@@ -40,11 +40,11 @@ def main(config_path):
     
     #unzip ops
     unzip_data_dir = config["data"]["unzip_data_dir"]
-    if not os.path.exists(unzip_data_dir):
-        create_directories([unzip_data_dir])
+    if os.path.exists(unzip_data_dir):
+        #create_directories([unzip_data_dir])
         unzip_file(source=data_file_path, dest=unzip_data_dir)
     else:
-        logging.info(f"data already extracted")
+        logging.info(f"Error in unzipping")
     #create_directories([unzip_data_dir])
     #unzip_file(source=data_file_path, dest= unzip_data_dir)
     
