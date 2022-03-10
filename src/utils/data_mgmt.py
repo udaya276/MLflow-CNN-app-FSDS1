@@ -11,7 +11,6 @@ def validate_image(config: dict) -> None:
     PARENT_DIR = os.path.join(
         config["data"]["unzip_data_dir"],
         config["data"]["parent_data_dir"])
-    create_directories([PARENT_DIR])
     BAD_DATA_DIR = os.path.join(
         config["data"]["unzip_data_dir"],
         config["data"]["bad_data_dir"])
